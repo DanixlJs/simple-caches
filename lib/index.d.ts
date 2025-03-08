@@ -1,3 +1,4 @@
+import { RedisClientType } from "redis";
 /**
  * CacheTTL is a custom Map-like class that supports TTL (Time To Live) functionality.
  * It allows items to be stored with an expiration time and automatically removes expired items.
@@ -82,4 +83,59 @@ export declare class CacheLRU<K, V> extends Map<K, V> {
      * @returns The CacheLRU instance.
      */
     set(key: K, value: V): this;
+}
+/**
+ * A simple Redis-based cache with TTL support.
+ * @template K The type of cache keys.
+ * @template V The type of cached values.
+ */
+export declare class CacheREDIS<K extends string, V> {
+    private identifier;
+    private redis;
+    /**
+     * Initializes the Redis cache.
+     * @param redis The Redis client instance.
+     * @param identifier A unique prefix for cache keys.
+     */
+    constructor(redis: RedisClientType, identifier: string);
+    /**
+     * Retrieves a value from the cache.
+     * @param key The key to retrieve.
+     * @returns The cached value, or undefined if not found.
+     */
+    get(key: K): Promise<V | undefined>;
+    /**
+     * Stores a value in the cache.
+     * @param key The key to store the value under.
+     * @param value The value to store.
+     * @param ttl Optional TTL (in seconds). If 0, the value does not expire.
+     * @returns True if the value was stored successfully, false otherwise.
+     */
+    set(key: K, value: V, ttl?: number): Promise<boolean>;
+    /**
+     * Deletes a value from the cache.
+     * @param key The key to delete.
+     * @returns True if the key was deleted, false otherwise.
+     */
+    delete(key: K): Promise<boolean>;
+    /**
+     * Checks if a key exists in the cache.
+     * @param key The key to check.
+     * @returns True if the key exists, false otherwise.
+     */
+    has(key: K): Promise<boolean>;
+    /**
+     * Retrieves all stored values in the cache.
+     * @returns An array of cached values.
+     */
+    values(): Promise<V[]>;
+    /**
+     * Clears all cache entries under the given identifier.
+     */
+    clear(): Promise<void>;
+    /**
+     * Gets the number of stored keys in the cache.
+     * @returns The number of cached entries.
+     */
+    size(): Promise<number>;
 }

@@ -2,9 +2,9 @@
   "name": "simple-caches",
   "version": "1.0.0",
   "type": "module",
-  "description": "Custom Cache Implementations (TTL and LRU)",
-  "main": "index.js", 
-  "types": "index.d.ts", 
+  "description": "Custom Cache Implementations (TTL, LRU and REDIS)",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanixlJs/simple-caches.git"
@@ -12,8 +12,17 @@
   "keywords": [
     "cache",
     "LRU",
-    "TTL"
+    "TTL",
+    "REDIS"
   ],
   "author": "DanixlJs",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "22.13.10",
+    "tsc": "2.0.4",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "redis": "4.7.0"
+  }
 }
