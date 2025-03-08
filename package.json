@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Custom Cache Implementations (TTL and LRU)",
-  "main": "index.mjs", 
-  "types": "index.d.mts", 
+  "main": "index.js", 
+  "types": "index.d.ts", 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanixlJs/simple-caches.git"
